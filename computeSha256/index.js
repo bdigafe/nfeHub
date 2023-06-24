@@ -3,8 +3,8 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
     
     //get the data used to sign from request body
-    const data = req.body.data;
-    const key =  req.body.key;
+    const data = req.body.toString();
+    const key =  "xVnKuR8elwcDhXalUrGQeiyYRExLl9kl"
 
     // sign payload
     const str = CryptoJS.HmacSHA256(data, key);
