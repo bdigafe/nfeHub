@@ -6,7 +6,7 @@ module.exports = async function (context, req) {
     const data = req.body.data;
     const key =  req.body.key;
 
-    // sign
+    // sign payload
     const str = CryptoJS.HmacSHA256(CryptoJS.enc.Utf8.parse(data), key);
     const sig = CryptoJS.enc.Base64.stringify(str);
 
