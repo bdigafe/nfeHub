@@ -1,7 +1,7 @@
 {
   "name": "nfehub",
   "version": "1.0.0",
-  "description": "",
+  "description": "NfeHub Package",
   "scripts": {
     "start": "func start",
     "test": "echo \"No tests yet...\""
