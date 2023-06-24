@@ -3,7 +3,7 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
     
     //get the data used to sign from request body
-    const data = req.body.toString();
+    const data = req.body;
     const key =  "xVnKuR8elwcDhXalUrGQeiyYRExLl9kl"
 
     // sign payload
