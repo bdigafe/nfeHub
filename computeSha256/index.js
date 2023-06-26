@@ -5,14 +5,14 @@ module.exports = async function (context, req) {
     
     //get the data used to sign from request body
     const data = req.rawBody.toString('utf8');
-    const key =  "xVnKuR8elwcDhXalUrGQeiyYRExLl9kl";
+    const key = "e05d2f9a838df65f9da4931471c5c43f67af1e2b309b63a3d57914d9cfadcced";
+    //"xVnKuR8elwcDhXalUrGQeiyYRExLl9kl";
 
     const hmac = crypto.createHmac('sha256', key)
-        .update(data)
-        .end()      
-    const hash = hmac.digest('base64')
+        .update(data)    
+        .digest('base64')
 
     context.res = {   
-        body: `sha256=${hash}, len: ${data.length}` 
+        body: `sha256=${hmac}, len: ${data.length}` 
     };
 }
