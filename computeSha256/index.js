@@ -1,15 +1,18 @@
 const crypto = require('crypto');
 
-app.use(express.raw({ type: 'application/json' }));
-app.post('/webhook', async (request, response) => {
-    const signature = request.headers['typeform-signature']
-    const isValid = verifySignature(signature, request.body.toString());
-});
+module.exports = async function (context, req) {
+    context.log('JavaScript HTTP trigger function processed a request.');
+    
+    //get the data used to sign from request body
+    const data = req.rawBody;
+    const key = "xVnKuR8elwcDhXalUrGQeiyYRExLl9kl";
 
-const verifySignature = function (receivedSignature, payload) {
     const hash = crypto
-        .createHmac('sha256', process.env.SECRET_TOKEN)
-        .update(payload)
+        .createHmac('sha256', key)
+        .update(data)
         .digest('base64')
-    return receivedSignature === `sha256=${hash}`
+
+    context.res = {   
+        body: `sha256=${hash}` 
+    };
 }
