@@ -4,15 +4,15 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
     
     //get the data used to sign from request body
-    const data = req.rawBody;
-    const key = "xVnKuR8elwcDhXalUrGQeiyYRExLl9kl";
+    const data = req.rawBody.toString('utf8');
+    const key =  "xVnKuR8elwcDhXalUrGQeiyYRExLl9kl";
 
-    const hash = crypto
-        .createHmac('sha256', key)
-        .update(data)
-        .digest('base64')
+    const hmac = crypto.createHmac('sha256', key);
+    hmac.write(data)
+    hmac.end()      
+    const hash = hmac.read().toString('base64')
 
     context.res = {   
-        body: `sha256=${hash}` 
+        body: `sha256=${hash}, len: ${data.length}` 
     };
 }
