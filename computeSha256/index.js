@@ -1,6 +1,4 @@
 const crypto = require('crypto');
-const cryptoJs = require('crypto-js');
-
 
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
